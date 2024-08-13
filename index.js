@@ -1,42 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>MyTube - Upload Video</title>
-</head>
-<body>
-    <header>
-        <div class="logo">MyTube</div>
-        <nav>
-            <a href="#upload">Upload</a>
-            <a href="#videos">Watch Videos</a>
-            <a href="#login">Login</a>
-        </nav>
-    </header>
+document.getElementById('upload-button').addEventListener('click', function() {
+    const videoInput = document.getElementById('video-upload');
+    const videoList = document.getElementById('video-list');
 
-    <main>
-        <section id="upload" class="form-section">
-            <h2>Upload Video</h2>
-            <form id="uploadForm">
-                <input type="text" id="videoTitle" placeholder="Video Title" required>
-                <input type="file" id="videoFile" accept="video/*" required>
-                <button type="submit">Upload</button>
-            </form>
-            <div id="uploadMessage"></div>
-        </section>
+    if (videoInput.files.length > 0) {
+        const videoFile = videoInput.files[0];
+        const videoElement = document.createElement('video');
+        videoElement.src = URL.createObjectURL(videoFile);
+        videoElement.controls = true;
+        videoElement.width = 480;
+        
+        const videoItem = document.createElement('div');
+        videoItem.appendChild(videoElement);
+        videoList.appendChild(videoItem);
 
-        <section id="videos">
-            <h2>Uploaded Videos</h2>
-            <div class="video-grid" id="videoList"></div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 MyTube. All rights reserved.</p>
-    </footer>
-
-    
-</body>
-</html>
+        videoInput.value = ''; // Reset file input
+    } else {
+        alert('Please select a video file to upload.');
+    }
+});
