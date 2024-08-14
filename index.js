@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function openUploadModal() {
-    document.getElementById("uploadModal").style.display = "block";
+    document.getElementById("uploadModal").style.display = "flex";
 }
 
 function closeUploadModal() {
@@ -97,7 +97,6 @@ function addVideoToDOM(videoData) {
             commentList.appendChild(comment);
             commentTextInput.value = "";
 
-            // Save comment to local storage
             videoData.comments.push(commentText);
             saveVideosToLocalStorage();
         }
